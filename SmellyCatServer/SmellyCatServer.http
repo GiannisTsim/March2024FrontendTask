@@ -1,0 +1,22 @@
+@SmellyCatServer_HostAddress = http://localhost:5146
+
+### Send POST request with valid json body
+POST {{SmellyCatServer_HostAddress}}/contact
+Content-Type: application/json
+
+{
+  "fullName": "test",
+  "email": "test@test.com",
+  "city": "test",
+  "postalCode": "test",
+  "address": "test",
+  "message": "test"
+}
+
+### Send POST request with invalid json body
+POST {{SmellyCatServer_HostAddress}}/contact
+Content-Type: application/json
+
+{
+  "email": "te"
+}

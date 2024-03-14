@@ -1,0 +1,136 @@
+<div class="container fw-bold">
+  <div class="row mt-4">
+    <h1>Contact us</h1>
+  </div>
+
+  <div class="row">
+
+    <!-- ************** -->
+    <!-- ***  Form  *** -->
+    <!-- ************** -->
+    <div class="col-lg">
+      <div class="my-4">
+        We are all cat persons, so if you got any questions, drop it below and
+        we will contact you back!
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <!-- Full Name -->
+        <div class="row mb-3">
+          <label for="full-name" class="col-sm-3 col-form-label">Your Full Name</label>
+          <div class="col-sm-9">
+            <input required id="full-name" type="text" class="form-control" placeholder="Type your name"
+              formControlName="fullName" />
+            @if(contactForm.controls.fullName.touched && contactForm.controls.fullName.hasError('required')){
+            <div class="text-danger">Full Name is required.</div>
+            }
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="row mb-3">
+          <label for="email" class="col-sm-3 col-form-label">Your Email</label>
+          <div class="col-sm-9">
+            <input required id="email" type="email" class="form-control" placeholder="Type your email"
+              formControlName="email" />
+            @if(contactForm.controls.email.touched && contactForm.controls.email.hasError('required')){
+            <div class="text-danger">Email is required.</div>
+            }
+            @if(contactForm.controls.email.touched && contactForm.controls.email.hasError('email')){
+            <div class="text-danger">Email is not valid.</div>
+            }
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="mb-3 d-flex justify-content-between">
+          <!-- City -->
+          <div>
+            <label for="city" class="form-label">City</label>
+            <input required id="city" type="text" class="form-control" placeholder="ex. Thessaloniki"
+              formControlName="city" />
+            @if(contactForm.controls.city.touched && contactForm.controls.city.hasError('required')){
+            <div class="text-danger">City is required.</div>
+            }
+          </div>
+
+          <!-- Postal Code -->
+          <div>
+            <label for="postal-code" class="form-label">Postal Code</label>
+            <input required id="postal-code" type="text" class="form-control" placeholder="ex. 54658"
+              formControlName="postalCode" />
+            @if(contactForm.controls.postalCode.touched && contactForm.controls.postalCode.hasError('required')){
+            <div class="text-danger">Postal Code is required.</div>
+            }
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <input required id="address" type="text" class="form-control" placeholder="ex. Aristotelous 16"
+            formControlName="address" />
+          @if(contactForm.controls.address.touched && contactForm.controls.address.hasError('required')){
+          <div class="text-danger">Address is required.</div>
+          }
+        </div>
+
+        <!-- Message -->
+        <div class="mb-3">
+          <div class="d-flex justify-content-between">
+            <label for="message" class="form-label">Your Message</label>
+            <span class="optional-label">Optional</span>
+          </div>
+          <textarea id="message" class="form-control" placeholder="Type your message"
+            formControlName="message"></textarea>
+        </div>
+
+        <!-- Terms -->
+        <div class="mb-3">
+          <div class="form-check">
+            <input id="agreed-to-terms" class="form-check-input" type="checkbox" formControlName="agreedToTerms" />
+            <label class="form-check-label fw-light" for="agreed-to-terms">I agree with the Terms & Conditions</label>
+          </div>
+          @if(contactForm.controls.agreedToTerms.touched && contactForm.controls.agreedToTerms.hasError('required')){
+          <div class="text-danger">You must accept our terms and conditions to continue.</div>
+          }
+        </div>
+
+        <div class="mb-3 d-flex align-items-center">
+          <button class="btn btn-lg submit-button me-3" type="submit" [disabled]="!contactForm.valid">Send!</button>
+          @if (status$ | async; as status){
+          <div [ngClass]="status.isSuccess ? 'text-success' : 'text-danger' ">{{status.message}}</div>
+          }
+        </div>
+
+      </form>
+    </div>
+
+    <!-- ************* -->
+    <!-- ***  Map  *** -->
+    <!-- ************* -->
+    <div class="col-lg text-center text-lg-end">
+      <div class="ratio ratio-4x3">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3027.7956829868554!2d22.940523613034777!3d40.63438764224169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a8390792b8a8f3%3A0x99dba035337083fe!2sAristot%C3%A9lous%2016%2C%20Thessaloniki%20546%2023!5e0!3m2!1sen!2sgr!4v1709972322533!5m2!1sen!2sgr"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="mb-3">Headquarters</h3>
+        <div class="mb-3">
+          Aristotelous 16, 54658
+          <br />
+          Thessaloniki, Greece
+        </div>
+        <div class="mb-3">
+          +30 231 129 0998
+          <br />
+          hey&#64;smellycat.gr
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
